@@ -19,7 +19,12 @@ const NavLink: React.FC<Props> = ({ text, href, ...props }) => {
       <span
         className={clsx([
           classes.link,
-          { [classes.activeLink]: href.toString() === pathname },
+          {
+            [classes.activeLink]:
+              href.toString() === "/"
+                ? pathname === "/"
+                : pathname.includes(href.toString()),
+          },
         ])}
       >
         {text}
