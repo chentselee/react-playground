@@ -1,5 +1,6 @@
-import { Provider } from "jotai";
 import "../styles/globals.css";
+
+import { Provider } from "jotai";
 
 function MyApp({ Component, pageProps }) {
   return (

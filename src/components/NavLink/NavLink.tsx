@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
-import clsx from "clsx";
 
 const classes = {
   link:

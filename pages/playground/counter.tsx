@@ -1,7 +1,8 @@
-import Playground from "./index";
-import CounterZustand from "src/components/CounterZustand";
 import CounterJotai from "src/components/CounterJotai";
 import CounterValtio from "src/components/CounterValtio";
+import CounterZustand from "src/components/CounterZustand";
+
+import Playground from "./index";
 
 export default function Counter() {
   return (

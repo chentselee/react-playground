@@ -1,8 +1,8 @@
 import {
-  useEffectReducer,
-  EffectReducer,
   EffectFunction,
+  EffectReducer,
   EffectsMap,
+  useEffectReducer,
 } from "use-effect-reducer";
 
 interface ReducerState {

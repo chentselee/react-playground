@@ -1,5 +1,6 @@
-import { useProxy } from "valtio";
 import { countProxy } from "src/valtio/count";
+import { useProxy } from "valtio";
+
 import CounterButton from "./CounterButtons";
 
 export default function Counter() {

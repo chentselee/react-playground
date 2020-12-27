@@ -1,12 +1,7 @@
-import Playground from "./index";
 import Article from "src/components/Article";
-import {
-  useEffectReducer,
-  EffectReducer,
-  EffectFunction,
-  EffectsMap,
-} from "use-effect-reducer";
 import { useCount } from "src/store/count";
+
+import Playground from "./index";
 
 const UseEffectReducer = () => {
   const [{ count }, dispatch] = useCount();

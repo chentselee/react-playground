@@ -1,7 +1,7 @@
-import Main from "src/layouts/Main";
-import Sidebar from "src/components/Sidebar";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Sidebar from "src/components/Sidebar";
+import Main from "src/layouts/Main";
 
 const basePath = "/playground";
 

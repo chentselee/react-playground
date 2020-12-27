@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import { countAtom } from "src/jotai/count";
+
 import CounterButton from "./CounterButtons";
 
 export default function Counter() {
