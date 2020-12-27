@@ -4,12 +4,13 @@ import Sidebar from "src/components/Sidebar";
 import Main from "src/layouts/Main";
 
 const basePath = "/playground";
+const defaultPath = `${basePath}/state-management`;
 
 const Playground: React.FC = ({ children }) => {
   const route = useRouter();
   useEffect(() => {
     if (route.pathname === basePath) {
-      route.replace(`${basePath}/counter`);
+      route.replace(defaultPath);
     }
   }, []);
   return (
