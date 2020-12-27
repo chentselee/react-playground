@@ -17,13 +17,13 @@ const Playground: React.FC = ({ children }) => {
       <div className="flex w-screen">
         <Sidebar
           links={[
-            { text: "Counter", href: `${basePath}/counter` },
+            { text: "State Management", href: `${basePath}/state-management` },
             {
               text: "useEffectReducer",
               href: `${basePath}/use-effect-reducer`,
             },
             {
-              text: "react query",
+              text: "React Query",
               href: `${basePath}/react-query`,
             },
           ]}
