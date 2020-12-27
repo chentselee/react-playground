@@ -1,13 +1,18 @@
 import "../styles/globals.css";
 
 import { Provider } from "jotai";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-function MyApp({ Component, pageProps }) {
+const queryClient = new QueryClient();
+
+function App({ Component, pageProps }) {
   return (
     <Provider>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </Provider>
   );
 }
 
-export default MyApp;
+export default App;

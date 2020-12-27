@@ -36,7 +36,11 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({ text, href, ...props }) => {
       <span
         className={clsx([
           classes.link,
-          { [classes.activeLink]: pathname.match(href.toString()) },
+          {
+            [classes.activeLink]: pathname
+              .replace(/\s-/g, "")
+              .match(href.toString().replace(/\s-/g, "")),
+          },
         ])}
       >
         {text}

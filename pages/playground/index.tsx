@@ -22,6 +22,10 @@ const Playground: React.FC = ({ children }) => {
               text: "useEffectReducer",
               href: `${basePath}/use-effect-reducer`,
             },
+            {
+              text: "react query",
+              href: `${basePath}/react-query`,
+            },
           ]}
         />
         <section className="px-16 pt-9 pb-16 flex-grow">{children}</section>
