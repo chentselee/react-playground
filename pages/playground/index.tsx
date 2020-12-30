@@ -12,7 +12,7 @@ const Playground: React.FC = ({ children }) => {
     if (route.pathname === basePath) {
       route.replace(defaultPath);
     }
-  }, []);
+  }, [route]);
   return (
     <Main>
       <div className="flex w-screen">
