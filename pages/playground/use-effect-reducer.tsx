@@ -1,8 +1,8 @@
 import Article from "src/components/Article";
 import Button from "src/components/Button";
+import { jsonplaceholder } from "src/constants/api";
 import { Post } from "src/models/Post";
 import { useCount } from "src/store/count";
-import { API, endpoint } from "src/store/posts";
 import {
   EffectReducer,
   EffectsMap,
@@ -44,7 +44,7 @@ type ReducerEffect = { type: "fetchPosts" };
 
 const effectsMap: EffectsMap<ReducerState, ReducerEvent, ReducerEffect> = {
   fetchPosts: (_, __, dispatch) => {
-    fetch(`${API}/${endpoint}?_limit=10`)
+    fetch(`${jsonplaceholder.endpoint}/${jsonplaceholder.posts}?_limit=10`)
       .then((res) => res.json())
       .then((data) => dispatch({ type: "SUCCESS", payload: { posts: data } }))
       .catch((e) =>
