@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 import { Post } from "src/models/Post";
 
-const API = "https://jsonplaceholder.typicode.com";
-const endpoint = "posts";
+export const API = "https://jsonplaceholder.typicode.com";
+export const endpoint = "posts";
 
 const fetchPosts = (query?: string): Promise<Post[]> =>
   fetch(`${API}/${endpoint}${query ? `?${query}` : ""}`).then((res) =>
