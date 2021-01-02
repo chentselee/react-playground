@@ -47,10 +47,10 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "tsc --pretty",
-      "eslint . --fix",
-      "prettier --write ."
+    "*.@(ts,tsx)": [
+      "npm run type-check",
+      "npm run lint",
+      "npm run format"
     ]
   }
 }
