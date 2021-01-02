@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<div>
+  <button
+    class="uppercase px-3 py-0.5 border border-gray-600 rounded-sm hover:bg-gray-600 hover:text-gray-50 transition-colors"
+  />
+</div>
+`;
