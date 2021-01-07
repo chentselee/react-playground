@@ -10,7 +10,7 @@ const fetchPosts = (query?: string): Promise<Post[]> =>
   ).then((res) => res.json());
 
 export const usePosts = (limit?: number) => {
-  return useQuery(jsonplaceholder.posts, () =>
+  return useQuery([jsonplaceholder.posts, limit], () =>
     fetchPosts(limit ? `_limit=${limit}` : undefined)
   );
 };
