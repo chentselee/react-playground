@@ -1,29 +1,52 @@
+import { Formik } from "formik";
+import { useFormikContext } from "formik";
 import { useState } from "react";
 import { debounceTime, filter, map } from "rxjs/operators";
 import Article from "src/components/Article";
-import TextInput from "src/components/TextInput";
+import TextField from "src/components/TextField";
 import { usePosts } from "src/store/posts";
 import { useSubject, useSubscription } from "src/utils";
+import * as Yup from "yup";
 
 import Playground from "./index";
 
-const ReactQuery = () => {
-  const [inputValue, setInputValue] = useState(() => "10");
-  const [searchLimit, setSearchLimit] = useState(() => 10);
+const SearchLimitHandler: React.FC<{
+  onLimitChange: (limit: number) => void;
+}> = ({ onLimitChange }) => {
+  const { values } = useFormikContext<Values>();
+  const { limit } = values;
 
-  const inputValue$ = useSubject(inputValue);
+  const limitValue$ = useSubject(limit);
 
   useSubscription(
-    inputValue$.pipe(
+    limitValue$.pipe(
       debounceTime(500),
-      filter((value) => new RegExp(/^\d+$/).test(value)),
+      filter((value) => new RegExp(/^\d+$/).test(value.toString())),
       map((value) => +value),
       filter((value) => value !== 0)
     ),
-    { next: (value) => setSearchLimit(value) }
+    { next: (value) => onLimitChange(value) }
   );
 
-  const { data: posts, status, error } = usePosts(searchLimit);
+  return null;
+};
+
+interface Values {
+  limit: number;
+}
+
+const initialValues: Values = {
+  limit: 10,
+};
+
+const validationSchema = Yup.object().shape({
+  limit: Yup.number(),
+});
+
+const ReactQuery = () => {
+  const [limit, setLimit] = useState(() => 10);
+
+  const { data: posts, status, error } = usePosts(limit);
 
   return (
     <Playground>
@@ -34,10 +57,16 @@ const ReactQuery = () => {
           <a href="https://jsonplaceholder.typicode.com/">JSON Placeholder</a>.
         </p>
         <hr />
-        <TextInput
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={() => {}}
+        >
+          <>
+            <TextField name="limit" label="Limit" />
+            <SearchLimitHandler onLimitChange={(limit) => setLimit(limit)} />
+          </>
+        </Formik>
         {status === "loading" && <div>Loading...</div>}
         {status === "error" && <div>{error}</div>}
         {status === "success" && (
