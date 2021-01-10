@@ -1,7 +1,12 @@
 import { Formik } from "formik";
 import { useFormikContext } from "formik";
 import { useState } from "react";
-import { debounceTime, filter, map } from "rxjs/operators";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+} from "rxjs/operators";
 import Article from "src/components/Article";
 import TextField from "src/components/TextField";
 import { usePosts } from "src/store/posts";
@@ -22,6 +27,7 @@ const SearchLimitHandler: React.FC<{
     limitValue$.pipe(
       debounceTime(500),
       filter((value) => new RegExp(/^\d+$/).test(value.toString())),
+      distinctUntilChanged(),
       map((value) => +value),
       filter((value) => value !== 0)
     ),
