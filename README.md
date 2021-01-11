@@ -4,6 +4,8 @@ A playground to fool around and have fun.
 
 ## Todo
 
-- [ ] separate sidebar scroll
+- separate sidebar scroll
 
-- [ ] react-query: pagination
+- react-query: pagination
+
+- keyboard navigation
