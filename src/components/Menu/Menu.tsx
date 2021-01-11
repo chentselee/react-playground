@@ -9,7 +9,7 @@ const Menu = () => {
   } = useNav();
   return (
     <>
-      <button onClick={() => dispatch({ type: "TOGGLE" })}>
+      <button className="w-full" onClick={() => dispatch({ type: "TOGGLE" })}>
         {status === "close" && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
