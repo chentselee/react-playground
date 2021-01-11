@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { NavProps } from "src/types/nav";
 import createStore, { State } from "zustand";
 
-type Status = "open" | "close";
+type Status = "open" | "close" | "none";
 
 interface ReducerState {
   status: Status;
@@ -10,7 +10,7 @@ interface ReducerState {
 }
 
 const initialState: ReducerState = {
-  status: "close",
+  status: "none",
   links: [],
 };
 
@@ -21,9 +21,9 @@ type ReducerAction =
 
 const reducer = (state: ReducerState, action: ReducerAction): ReducerState => {
   if (action.type === "SET_LINKS") {
-    return { ...state, links: action.payload.links };
+    return { ...state, links: action.payload.links, status: "close" };
   } else if (action.type === "RESET_LINKS") {
-    return { ...state, links: [] };
+    return { ...state, links: [], status: "none" };
   } else {
     switch (state.status) {
       case "close":
@@ -68,7 +68,7 @@ export const useNav = (links?: NavProps[]) => {
     return () => {
       dispatch({ type: "RESET_LINKS" });
     };
-  });
+  }, [dispatch, links]);
 
   return store;
 };
