@@ -18,6 +18,10 @@ const links: NavProps[] = [
     text: "React Query",
     href: `${basePath}/react-query`,
   },
+  {
+    text: "Jotai Machine",
+    href: `${basePath}/jotai-machine`,
+  },
 ];
 
 const Playground: React.FC = ({ children }) => {
