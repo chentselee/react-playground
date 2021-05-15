@@ -22,6 +22,10 @@ const links: NavProps[] = [
     text: "Jotai Machine",
     href: `${basePath}/jotai-machine`,
   },
+  {
+    text: "Actors",
+    href: `${basePath}/actors`,
+  },
 ];
 
 const Playground: React.FC = ({ children }) => {

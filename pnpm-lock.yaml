@@ -8,9 +8,11 @@ specifiers:
   '@types/jest': ^26.0.19
   '@types/node': ^14.14.16
   '@types/react': ^17.0.0
+  '@types/uuid': ^8.3.0
   '@typescript-eslint/eslint-plugin': ^4.11.0
   '@typescript-eslint/parser': ^4.11.0
-  '@xstate/react': ^1.3.1
+  '@xstate/inspect': ^0.4.1
+  '@xstate/react': ^1.3.3
   autoprefixer: ^10.1.0
   babel-jest: ^26.6.3
   clsx: ^1.1.1
@@ -35,18 +37,20 @@ specifiers:
   tailwindcss: ^2.0.2
   typescript: ^4.1.3
   use-effect-reducer: ^0.7.0
+  uuid: ^8.3.2
   valtio: ^0.5.0
-  xstate: ^4.16.2
+  xstate: ^4.19.1
   yup: ^0.32.8
   zustand: ^3.2.0
 
 dependencies:
   '@tailwindcss/typography': 0.3.1_tailwindcss@2.0.2
-  '@xstate/react': 1.3.1_7a6a905343460fa592a609a78d0f60ba
+  '@xstate/inspect': 0.4.1
+  '@xstate/react': 1.3.3_e911eac2df1c702fcf50bbfee3e1f43e
   autoprefixer: 10.1.0_postcss@8.2.1
   clsx: 1.1.1
   formik: 2.2.6_react@17.0.1
-  jotai: 0.14.5_9e2c753b27cb7c86b3324ee542a46fc8
+  jotai: 0.14.5_63cbd4f2459a98a4885b19d43b188766
   next: 10.2.0_c39e9db791ea05e3ec4e0e74abb7a6b5
   postcss: 8.2.1
   react: 17.0.1
@@ -54,8 +58,9 @@ dependencies:
   react-query: 3.5.5_react-dom@17.0.1+react@17.0.1
   tailwindcss: 2.0.2_80f3d67eed96b2b2e18887ea575f44dd
   use-effect-reducer: 0.7.0_react@17.0.1
+  uuid: 8.3.2
   valtio: 0.5.0_react@17.0.1
-  xstate: 4.16.2
+  xstate: 4.19.1
   yup: 0.32.8
   zustand: 3.2.0_react@17.0.1
 
@@ -66,6 +71,7 @@ devDependencies:
   '@types/jest': 26.0.19
   '@types/node': 14.14.16
   '@types/react': 17.0.0
+  '@types/uuid': 8.3.0
   '@typescript-eslint/eslint-plugin': 4.11.0_1b9a0c47bb6bc72fe9ec08ec801e03a4
   '@typescript-eslint/parser': 4.11.0_eslint@7.16.0+typescript@4.1.3
   babel-jest: 26.6.3
@@ -989,6 +995,10 @@ packages:
       '@types/jest': 26.0.19
     dev: true
 
+  /@types/uuid/8.3.0:
+    resolution: {integrity: sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==}
+    dev: true
+
   /@types/yargs-parser/20.2.0:
     resolution: {integrity: sha512-37RSHht+gzzgYeobbG+KWryeAW8J33Nhr69cjTqSYymXVZEN9NbRYWoYlRtDhHKPVT1FyNKwaTPC1NynKZpzRA==}
     dev: true
@@ -1105,8 +1115,16 @@ packages:
       eslint-visitor-keys: 2.0.0
     dev: true
 
-  /@xstate/react/1.3.1_7a6a905343460fa592a609a78d0f60ba:
-    resolution: {integrity: sha512-wgAHr4tWVQQwH6dIQTcZQYGLXiK9V8gMqMxOWyiLQzoKchqXFfb0LlCcw0FAc4jmpuGHSFSk6fAXjEpFpV+Jxw==}
+  /@xstate/inspect/0.4.1:
+    resolution: {integrity: sha512-tcGBUCVymP8ij0K2fXZckrwrQkmNJL1DgQAM0eSILQKb8iBDN3GeqhYkNCS4HP29EzF2TZL0+k74FPWKaU9Fhw==}
+    peerDependencies:
+      ws: ^7.3.1
+    dependencies:
+      fast-safe-stringify: 2.0.7
+    dev: false
+
+  /@xstate/react/1.3.3_e911eac2df1c702fcf50bbfee3e1f43e:
+    resolution: {integrity: sha512-10QfCZr3dxahYmpykQ5iGtzjtKJ5dkiu1P4JyD0dGnmQLbBD6XDKCnzfOe5MWD8CocErgsaEMmsTMVsnxIAuYQ==}
     peerDependencies:
       '@xstate/fsm': ^1.0.0
       react: ^16.8.0 || ^17.0.0
@@ -1120,7 +1138,7 @@ packages:
       react: 17.0.1
       use-isomorphic-layout-effect: 1.1.1_@types+react@17.0.0+react@17.0.1
       use-subscription: 1.5.1_react@17.0.1
-      xstate: 4.16.2
+      xstate: 4.19.1
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -2791,6 +2809,10 @@ packages:
     resolution: {integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=}
     dev: true
 
+  /fast-safe-stringify/2.0.7:
+    resolution: {integrity: sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==}
+    dev: false
+
   /fastq/1.10.0:
     resolution: {integrity: sha512-NL2Qc5L3iQEsyYzweq7qfgy5OtXCmGzGvhElGEd/SoFWEMOEczNh5s5ocaF01HDetxz+p8ecjNPA6cZxxIHmzA==}
     dependencies:
@@ -4144,7 +4166,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jotai/0.14.5_9e2c753b27cb7c86b3324ee542a46fc8:
+  /jotai/0.14.5_63cbd4f2459a98a4885b19d43b188766:
     resolution: {integrity: sha512-8WjJYxLKv79ZF3gRERcYqXkwRWtDQq01hQXdg+qcKE0MtQcwGyReM/WHFGRUhqHW51O8fsjk+9s7U6AJ+p9uLQ==}
     peerDependencies:
       immer: '*'
@@ -4173,7 +4195,7 @@ packages:
       react-dom: 17.0.1_react@17.0.1
       react-query: 3.5.5_react-dom@17.0.1+react@17.0.1
       use-context-selector: 1.3.7_react-dom@17.0.1+react@17.0.1
-      xstate: 4.16.2
+      xstate: 4.19.1
     dev: false
 
   /js-tokens/4.0.0:
@@ -6639,8 +6661,6 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
-    dev: true
-    optional: true
 
   /v8-compile-cache/2.2.0:
     resolution: {integrity: sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q==}
@@ -6845,8 +6865,8 @@ packages:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
     dev: true
 
-  /xstate/4.16.2:
-    resolution: {integrity: sha512-EY39NNZnwM4tRYNmQAi1c2qHuZ1lJmuDpEo1jxiRcfS+1jPtKRAjGRLNx3fYKcK0ohW6mL41Wze3mdCF0SqavA==}
+  /xstate/4.19.1:
+    resolution: {integrity: sha512-tnBh6ue9MiyoMkE2+w1IqfvJm4nBe3S4Ky/RLvlo9vka8FdO4WyyT3M7PA0pQoM/FZ9aJVWFOlsNw0Nc7E+4Bw==}
     dev: false
 
   /xtend/4.0.2:
