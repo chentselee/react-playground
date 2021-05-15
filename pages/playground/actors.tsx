@@ -1,11 +1,18 @@
 import { useActor, useMachine } from "@xstate/react";
 import { Form, Formik, FormikProps } from "formik";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Article from "src/components/Article";
 import Button from "src/components/Button";
 import TextField from "src/components/TextField";
 import { v4 as uuid } from "uuid";
-import { assign, createMachine, spawn, SpawnedActorRef } from "xstate";
+import {
+  assign,
+  createMachine,
+  sendParent,
+  sendUpdate,
+  spawn,
+  SpawnedActorRef,
+} from "xstate";
 
 import PlayGround from "./index";
 
@@ -40,8 +47,12 @@ const todoMachine = createMachine<
     states: {
       idle: {
         on: {
-          EDIT: { actions: "editTodo" },
-          TOGGLE: { actions: "toggleTodo" },
+          EDIT: {
+            actions: ["editTodo", sendUpdate(), sendParent("PERSIST")],
+          },
+          TOGGLE: {
+            actions: ["toggleTodo", sendUpdate(), sendParent("PERSIST")],
+          },
         },
       },
     },
@@ -64,32 +75,56 @@ const todoMachine = createMachine<
   }
 );
 
+type HydrateEvent = { type: "HYDRATE"; todos: Todo[] };
+
+type PersistEvent = { type: "PERSIST" };
+
+type AddEvent = { type: "ADD"; text: string };
+
+type TodosMachineEvent = HydrateEvent | PersistEvent | AddEvent;
+
 interface TodosMachineContext {
-  todos: Todo[];
   todosRef: SpawnedActorRef<TodoMachineEvent>[];
 }
 
-const todosMachine = createMachine<TodosMachineContext>(
+const todosMachine = createMachine<TodosMachineContext, TodosMachineEvent>(
   {
     id: "todos",
-    context: { todos: [], todosRef: [] },
-    initial: "idle",
+    context: { todosRef: [] },
+    initial: "hydrating",
     states: {
+      hydrating: {
+        on: {
+          HYDRATE: {
+            target: "idle",
+            actions: "setTodos",
+          },
+        },
+      },
       idle: {
         on: {
           ADD: {
-            actions: ["addTodo", "clearInput"],
+            actions: ["addTodo", "clearInput", "persist"],
           },
+          PERSIST: { actions: "persist" },
         },
       },
     },
   },
   {
     actions: {
+      setTodos: assign({
+        todosRef: (_, event) =>
+          (event as HydrateEvent).todos.map((todo) =>
+            spawn(todoMachine.withContext({ todo }), {
+              name: `todo-${todo.id}`,
+            })
+          ),
+      }),
       addTodo: assign((context, event) => {
         const newTodo: Todo = {
           id: uuid(),
-          text: event.text,
+          text: (event as AddEvent).text,
           completed: false,
         };
         return {
@@ -122,9 +157,25 @@ const Actors = () => {
       clearInput: () => {
         formikRef.current.setFieldValue("todo", "");
       },
+      persist: (context) => {
+        localStorage.setItem(
+          "todos",
+          JSON.stringify(
+            // @ts-expect-error
+            context.todosRef.map((todoRef) => todoRef.state.context.todo)
+          )
+        );
+      },
     },
   });
   const { todosRef } = state.context;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const todos = localStorage.getItem("todos");
+      send("HYDRATE", { todos: todos ? JSON.parse(todos) : [] });
+    }
+  }, [send]);
 
   return (
     <PlayGround>
