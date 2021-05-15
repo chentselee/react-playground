@@ -1,6 +1,9 @@
 import { useActor, useMachine } from "@xstate/react";
-import React from "react";
+import { Form, Formik, FormikProps } from "formik";
+import React, { useRef } from "react";
 import Article from "src/components/Article";
+import Button from "src/components/Button";
+import TextField from "src/components/TextField";
 import { v4 as uuid } from "uuid";
 import { assign, createMachine, spawn, SpawnedActorRef } from "xstate";
 
@@ -64,13 +67,12 @@ const todoMachine = createMachine<
 interface TodosMachineContext {
   todos: Todo[];
   todosRef: SpawnedActorRef<TodoMachineEvent>[];
-  addingTodo: string;
 }
 
 const todosMachine = createMachine<TodosMachineContext>(
   {
     id: "todos",
-    context: { todos: [], todosRef: [], addingTodo: "" },
+    context: { todos: [], todosRef: [] },
     initial: "idle",
     states: {
       idle: {
@@ -78,20 +80,16 @@ const todosMachine = createMachine<TodosMachineContext>(
           ADD: {
             actions: ["addTodo", "clearInput"],
           },
-          CHANGE_ADDING_TODO: {
-            actions: "changeAddingTodo",
-          },
         },
       },
     },
   },
   {
     actions: {
-      changeAddingTodo: assign({ addingTodo: (_, event) => event.text }),
-      addTodo: assign((context) => {
+      addTodo: assign((context, event) => {
         const newTodo: Todo = {
           id: uuid(),
-          text: context.addingTodo,
+          text: event.text,
           completed: false,
         };
         return {
@@ -104,26 +102,47 @@ const todosMachine = createMachine<TodosMachineContext>(
           ],
         };
       }),
-      clearInput: assign({ addingTodo: "" }),
     },
   }
 );
 
+interface Values {
+  todo: string;
+}
+
+const initialValues: Values = {
+  todo: "",
+};
+
 const Actors = () => {
-  const [state, send] = useMachine(todosMachine);
-  const { addingTodo, todosRef } = state.context;
+  const formikRef = useRef<FormikProps<Values>>(null);
+
+  const [state, send] = useMachine(todosMachine, {
+    actions: {
+      clearInput: () => {
+        formikRef.current.setFieldValue("todo", "");
+      },
+    },
+  });
+  const { todosRef } = state.context;
 
   return (
     <PlayGround>
       <Article>
-        <input
-          type="text"
-          value={addingTodo}
-          onChange={(e) => send("CHANGE_ADDING_TODO", { text: e.target.value })}
-        />
-        <button type="button" onClick={() => send("ADD")}>
-          add
-        </button>
+        <Formik
+          innerRef={formikRef}
+          initialValues={initialValues}
+          onSubmit={(values) => {
+            send({ type: "ADD", text: values.todo });
+          }}
+        >
+          {() => (
+            <Form>
+              <TextField name="todo" label="Todo" />
+              <Button type="submit">Add</Button>
+            </Form>
+          )}
+        </Formik>
         {todosRef.map((todoRef) => (
           <Actor key={todoRef.id} todoRef={todoRef} />
         ))}
