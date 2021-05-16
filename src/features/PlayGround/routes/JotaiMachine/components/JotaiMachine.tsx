@@ -3,7 +3,7 @@ import { atomWithMachine } from "jotai/xstate";
 import Article from "src/components/Article";
 import { assign, createMachine, Sender } from "xstate";
 
-import Playground from "./index";
+import Playground from "../../../components/Sidebar";
 
 interface SwitchMachineContext {
   elapsed: number;

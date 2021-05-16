@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { Link, useLocation } from "react-router-dom";
 import { useNav } from "src/store/nav";
 import { NavProps } from "src/types/nav";
 
@@ -27,9 +26,9 @@ const Sidebar = () => {
 };
 
 const SidebarLink: React.FC<NavProps> = ({ text, href, ...props }) => {
-  const { pathname } = useRouter();
+  const { pathname } = useLocation();
   return (
-    <Link href={href} {...props}>
+    <Link to={href} {...props}>
       <span
         className={clsx([
           classes.link,

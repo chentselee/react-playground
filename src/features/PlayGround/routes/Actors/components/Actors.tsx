@@ -14,7 +14,7 @@ import {
   SpawnedActorRef,
 } from "xstate";
 
-import PlayGround from "./index";
+import Playground from "../../../components/Sidebar";
 
 interface Todo {
   id: string;
@@ -178,7 +178,7 @@ const Actors = () => {
   }, [send]);
 
   return (
-    <PlayGround>
+    <Playground>
       <Article>
         <Formik
           innerRef={formikRef}
@@ -198,7 +198,7 @@ const Actors = () => {
           <Actor key={todoRef.id} todoRef={todoRef} />
         ))}
       </Article>
-    </PlayGround>
+    </Playground>
   );
 };
 

@@ -10,7 +10,7 @@ import {
   useEffectReducer,
 } from "use-effect-reducer";
 
-import Playground from "./index";
+import Playground from "../../../components/Sidebar";
 
 type Status = "idle" | "fetching" | "success" | "error";
 

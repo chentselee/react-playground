@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import Sidebar from "src/components/Sidebar";
 import Main from "src/layouts/Main";
 import { useNav } from "src/store/nav";
@@ -29,12 +29,13 @@ const links: NavProps[] = [
 ];
 
 const Playground: React.FC = ({ children }) => {
-  const route = useRouter();
+  const { pathname } = useLocation();
+  const history = useHistory();
   useEffect(() => {
-    if (route.pathname === basePath) {
-      route.replace(defaultPath);
+    if (pathname === basePath) {
+      history.replace(defaultPath);
     }
-  }, [route]);
+  }, [history, pathname]);
 
   useNav(links);
 

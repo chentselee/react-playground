@@ -3,7 +3,7 @@ import CounterJotai from "src/components/CounterJotai";
 import CounterValtio from "src/components/CounterValtio";
 import CounterZustand from "src/components/CounterZustand";
 
-import Playground from "./index";
+import Playground from "../../../components/Sidebar";
 
 export default function StateManagement() {
   return (

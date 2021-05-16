@@ -13,7 +13,7 @@ import { usePosts } from "src/store/posts";
 import { useSubject, useSubscription } from "src/utils";
 import * as Yup from "yup";
 
-import Playground from "./index";
+import Playground from "../../../components/Sidebar";
 
 const SearchLimitHandler: React.FC<{
   onLimitChange: (limit: number) => void;
