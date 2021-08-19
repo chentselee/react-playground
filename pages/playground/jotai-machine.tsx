@@ -1,3 +1,4 @@
+import { inspect } from "@xstate/inspect";
 import { atom, useAtom } from "jotai";
 import { atomWithMachine } from "jotai/xstate";
 import Article from "src/components/Article";
@@ -16,8 +17,13 @@ type ElapseEvent = { type: "ELAPSE" };
 
 type SwitchMachineEvent = SwitchEvent | ElapseEvent;
 
+type SwitchMachineState =
+  | { value: "off"; context: undefined }
+  | { value: "on"; context: SwitchMachineContext }
+  | { value: "bright"; context: undefined };
+
 const createSwitchMachine = (brightGuard = 3) =>
-  createMachine<SwitchMachineContext, SwitchMachineEvent>({
+  createMachine<SwitchMachineContext, SwitchMachineEvent, SwitchMachineState>({
     initial: "off",
     context: {
       elapsed: 0,
@@ -70,12 +76,18 @@ const createSwitchMachine = (brightGuard = 3) =>
 
 const brightGuardAtom = atom(2);
 
-const switchMachineAtom = atomWithMachine((get) =>
-  createSwitchMachine(get(brightGuardAtom))
+const switchMachineAtom = atomWithMachine(
+  (get) => createSwitchMachine(get(brightGuardAtom)),
+  { devTools: true }
 );
+
+if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
+  inspect({ iframe: false });
+}
 
 const JotaiMachine: React.FC = () => {
   const [state, send] = useAtom(switchMachineAtom);
+
   return (
     <Playground>
       <Article>
