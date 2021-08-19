@@ -29,8 +29,8 @@ const Sidebar = () => {
 const SidebarLink: React.FC<NavProps> = ({ text, href, ...props }) => {
   const { pathname } = useRouter();
   return (
-    <Link href={href} {...props}>
-      <span
+    <Link href={href} passHref {...props}>
+      <a
         className={clsx([
           classes.link,
           {
@@ -41,7 +41,7 @@ const SidebarLink: React.FC<NavProps> = ({ text, href, ...props }) => {
         ])}
       >
         {text}
-      </span>
+      </a>
     </Link>
   );
 };

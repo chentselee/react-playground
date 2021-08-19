@@ -60,10 +60,10 @@ const Menu = () => {
 
 const MenuItem: React.FC<NavProps> = ({ href, text, ...props }) => {
   return (
-    <Link href={href} {...props}>
-      <span className="font-semibold text-2xl cursor-pointer hover:text-gray-800 transition-colors">
+    <Link href={href} passHref {...props}>
+      <a className="font-semibold text-2xl cursor-pointer hover:text-gray-800 transition-colors">
         {text}
-      </span>
+      </a>
     </Link>
   );
 };

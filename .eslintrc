@@ -8,11 +8,10 @@
   "plugins": ["simple-import-sort", "@typescript-eslint"],
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
+    "plugin:@next/next/recommended"
   ],
   "env": {
     "es6": true,
