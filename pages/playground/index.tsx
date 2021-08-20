@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Sidebar from "src/components/Sidebar";
 import Main from "src/layouts/Main";
-import { useNav } from "src/store/nav";
+import { useNav } from "src/modules/store/nav";
 import { NavProps } from "src/types/nav";
 
 const basePath = "/playground";

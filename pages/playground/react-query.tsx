@@ -9,8 +9,8 @@ import {
 } from "rxjs/operators";
 import Article from "src/components/Article";
 import TextField from "src/components/TextField";
-import { usePosts } from "src/store/posts";
-import { useSubject, useSubscription } from "src/utils";
+import { useSubject, useSubscription } from "src/modules/observable";
+import { usePosts } from "src/modules/store/posts";
 import * as Yup from "yup";
 
 import Playground from "./index";

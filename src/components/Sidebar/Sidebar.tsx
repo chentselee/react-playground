@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useNav } from "src/store/nav";
+import { useNav } from "src/modules/store/nav";
 import { NavProps } from "src/types/nav";
 
 const classes = {

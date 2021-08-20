@@ -2,7 +2,7 @@ import Article from "src/components/Article";
 import Button from "src/components/Button";
 import { jsonplaceholder } from "src/constants/api";
 import { Post } from "src/models/Post";
-import { useCount } from "src/store/count";
+import { useCount } from "src/modules/store/count";
 import {
   EffectReducer,
   EffectsMap,

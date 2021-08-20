@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { countAtom } from "src/jotai/count";
+import { countAtom } from "src/modules/store/jotai/count";
 
 import CounterButton from "./CounterButtons";
 

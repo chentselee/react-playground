@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useNav } from "src/store/nav";
+import { useNav } from "src/modules/store/nav";
 import { NavProps } from "src/types/nav";
 
 const Menu = () => {

@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { countAtom } from "src/jotai/count";
+import { countAtom } from "src/modules/store/jotai/count";
 
 const buttonClass =
   "row-start-3 row-end-4 col-span-1 px-4 py-2 uppercase text-xs sm:text-base font-bold tracking-wider text-blue-800 hover:text-blue-100";

@@ -1,4 +1,4 @@
-import { useCountStore } from "src/zustand/count";
+import { useCountStore } from "src/modules/store/zustand/count";
 
 import CounterButton from "./CounterButtons";
 

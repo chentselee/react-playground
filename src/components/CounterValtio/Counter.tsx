@@ -1,4 +1,4 @@
-import { countProxy } from "src/valtio/count";
+import { countProxy } from "src/modules/store/valtio/count";
 import { useProxy } from "valtio";
 
 import CounterButton from "./CounterButtons";
