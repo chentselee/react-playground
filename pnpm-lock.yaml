@@ -27,6 +27,7 @@ specifiers:
   jest-watch-typeahead: ^0.6.1
   jotai: ^1.3.0
   lint-staged: ^10.5.3
+  mitt: ^3.0.0
   next: 11.1.0
   postcss: ^8.3.6
   prettier: ^2.2.1
@@ -50,6 +51,7 @@ dependencies:
   clsx: 1.1.1
   formik: 2.2.6_react@17.0.1
   jotai: 1.3.0_8eb31abc873b42896276e2420e86c7cf
+  mitt: 3.0.0
   next: 11.1.0_13294cec940b979d449061af86064714
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
@@ -4603,6 +4605,10 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
 
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}

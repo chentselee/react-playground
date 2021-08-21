@@ -30,6 +30,10 @@ const links: NavProps[] = [
     text: "Dynamic Route",
     href: `${basePath}/dynamic-route?id=123`,
   },
+  {
+    text: "mitt",
+    href: `${basePath}/mitt`,
+  },
 ];
 
 const Playground: React.FC = ({ children }) => {
