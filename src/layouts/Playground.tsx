@@ -3,7 +3,7 @@ import Main from "src/layouts/Main";
 import { useNav } from "src/modules/store/nav";
 import { NavProps } from "src/types/nav";
 
-const links: NavProps[] = [
+export const links: NavProps[] = [
   { text: "State Management", href: `/state-management` },
   {
     text: "useEffectReducer",

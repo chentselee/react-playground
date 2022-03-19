@@ -1,15 +1,15 @@
-import { GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { getLayout, links } from "src/layouts/Playground";
 
-export default function () {
+function Index() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace(links[0].href);
+  }, []);
   return null;
 }
 
-export const getStaticProps: GetStaticProps = () => {
-  return {
-    props: {},
-    redirect: {
-      destination: "/playground/state-management",
-      permanent: false,
-    },
-  };
-};
+Object.assign(Index, { getLayout });
+
+export default Index;
