@@ -1,10 +1,10 @@
 import { countProxy } from "src/modules/store/valtio/count";
-import { useProxy } from "valtio";
+import { useSnapshot } from "valtio";
 
 import CounterButton from "./CounterButtons";
 
 export default function Counter() {
-  const countSnapshot = useProxy(countProxy);
+  const countSnapshot = useSnapshot(countProxy);
   return (
     <div className="h-4/6 grid grid-cols-2 grid-rows-3 gap-y-8 place-items-center">
       <div className="row-start-1 row-end-2 col-start-2 col-end-3 font-bold text-gray-800">
