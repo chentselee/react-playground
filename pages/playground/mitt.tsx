@@ -2,10 +2,9 @@ import { useActor } from "@xstate/react";
 import mitt from "mitt";
 import Article from "src/components/Article";
 import Button from "src/components/Button";
+import { getLayout } from "src/layouts/Playground";
 import { interpret } from "xstate";
 import { createModel } from "xstate/lib/model";
-
-import Playground from "./index";
 
 type ChannelEvent = {
   ping: undefined;
@@ -107,23 +106,23 @@ const Mitt = () => {
   const [pingState, pingSend] = useActor(pingService);
   const [pongState, pongSend] = useActor(pongService);
   return (
-    <Playground>
-      <Article>
-        <div className="flex gap-5 text-center">
-          <div>
-            <h5>ping</h5>
-            <Button onClick={() => pingSend("PING")}>ping</Button>
-            {pingState.matches("active.ponged") && <div>ponged!</div>}
-          </div>
-          <div>
-            <h5>pong</h5>
-            <Button onClick={() => pongSend("PONG")}>pong</Button>
-            {pongState.matches("active.pinged") && <div>pinged!</div>}
-          </div>
+    <Article>
+      <div className="flex gap-5 text-center">
+        <div>
+          <h5>ping</h5>
+          <Button onClick={() => pingSend("PING")}>ping</Button>
+          {pingState.matches("active.ponged") && <div>ponged!</div>}
         </div>
-      </Article>
-    </Playground>
+        <div>
+          <h5>pong</h5>
+          <Button onClick={() => pongSend("PONG")}>pong</Button>
+          {pongState.matches("active.pinged") && <div>pinged!</div>}
+        </div>
+      </div>
+    </Article>
   );
 };
+
+Object.assign(Mitt, { getLayout });
 
 export default Mitt;

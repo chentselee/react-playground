@@ -2,9 +2,8 @@ import { inspect } from "@xstate/inspect";
 import { atom, useAtom } from "jotai";
 import { atomWithMachine } from "jotai/xstate";
 import Article from "src/components/Article";
+import { getLayout } from "src/layouts/Playground";
 import { assign, createMachine, Sender } from "xstate";
-
-import Playground from "./index";
 
 interface SwitchMachineContext {
   elapsed: number;
@@ -88,18 +87,16 @@ const JotaiMachine: React.FC = () => {
   const [state, send] = useAtom(switchMachineAtom);
 
   return (
-    <Playground>
-      <Article>
-        <h1>Jotai Machine</h1>
-        <section>
-          <h2>{state.value}</h2>
-          <pre>{JSON.stringify(state.context, null, 2)}</pre>
-          <button onClick={() => send("SWITCH")}>switch</button>
-        </section>
-        <hr />
-        <Nested />
-      </Article>
-    </Playground>
+    <Article>
+      <h1>Jotai Machine</h1>
+      <section>
+        <h2>{state.value}</h2>
+        <pre>{JSON.stringify(state.context, null, 2)}</pre>
+        <button onClick={() => send("SWITCH")}>switch</button>
+      </section>
+      <hr />
+      <Nested />
+    </Article>
   );
 };
 
@@ -117,5 +114,7 @@ const Nested: React.FC = () => {
     </Article>
   );
 };
+
+Object.assign(JotaiMachine, { getLayout });
 
 export default JotaiMachine;

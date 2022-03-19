@@ -2,12 +2,11 @@ import Article from "src/components/Article";
 import CounterJotai from "src/components/CounterJotai";
 import CounterValtio from "src/components/CounterValtio";
 import CounterZustand from "src/components/CounterZustand";
+import { getLayout } from "src/layouts/Playground";
 
-import Playground from "./index";
-
-export default function StateManagement() {
+function StateManagement() {
   return (
-    <Playground>
+    <>
       <Article>
         <h1>State Management</h1>
         <p>Various state management libraries.</p>
@@ -18,6 +17,10 @@ export default function StateManagement() {
         <CounterJotai />
         <CounterValtio />
       </section>
-    </Playground>
+    </>
   );
 }
+
+Object.assign(StateManagement, { getLayout });
+
+export default StateManagement;

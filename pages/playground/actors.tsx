@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Article from "src/components/Article";
 import Button from "src/components/Button";
 import TextField from "src/components/TextField";
+import { getLayout } from "src/layouts/Playground";
 import { v4 as uuid } from "uuid";
 import {
   assign,
@@ -13,8 +14,6 @@ import {
   spawn,
   SpawnedActorRef,
 } from "xstate";
-
-import PlayGround from "./index";
 
 interface Todo {
   id: string;
@@ -178,27 +177,25 @@ const Actors = () => {
   }, [send]);
 
   return (
-    <PlayGround>
-      <Article>
-        <Formik
-          innerRef={formikRef}
-          initialValues={initialValues}
-          onSubmit={(values) => {
-            send({ type: "ADD", text: values.todo });
-          }}
-        >
-          {() => (
-            <Form>
-              <TextField name="todo" label="Todo" />
-              <Button type="submit">Add</Button>
-            </Form>
-          )}
-        </Formik>
-        {todosRef.map((todoRef) => (
-          <Actor key={todoRef.id} todoRef={todoRef} />
-        ))}
-      </Article>
-    </PlayGround>
+    <Article>
+      <Formik
+        innerRef={formikRef}
+        initialValues={initialValues}
+        onSubmit={(values) => {
+          send({ type: "ADD", text: values.todo });
+        }}
+      >
+        {() => (
+          <Form>
+            <TextField name="todo" label="Todo" />
+            <Button type="submit">Add</Button>
+          </Form>
+        )}
+      </Formik>
+      {todosRef.map((todoRef) => (
+        <Actor key={todoRef.id} todoRef={todoRef} />
+      ))}
+    </Article>
   );
 };
 
@@ -225,5 +222,7 @@ const Actor: React.FC<{ todoRef: SpawnedActorRef<TodoMachineEvent> }> = ({
     </section>
   );
 };
+
+Object.assign(Actors, { getLayout });
 
 export default Actors;

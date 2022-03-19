@@ -1,61 +1,15 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import Sidebar from "src/components/Sidebar";
-import Main from "src/layouts/Main";
-import { useNav } from "src/modules/store/nav";
-import { NavProps } from "src/types/nav";
+import { GetStaticProps } from "next";
 
-const basePath = "/playground";
-const defaultPath = `${basePath}/state-management`;
+export default function () {
+  return null;
+}
 
-const links: NavProps[] = [
-  { text: "State Management", href: `${basePath}/state-management` },
-  {
-    text: "useEffectReducer",
-    href: `${basePath}/use-effect-reducer`,
-  },
-  {
-    text: "React Query",
-    href: `${basePath}/react-query`,
-  },
-  {
-    text: "Jotai Machine",
-    href: `${basePath}/jotai-machine`,
-  },
-  {
-    text: "Actors",
-    href: `${basePath}/actors`,
-  },
-  {
-    text: "Dynamic Route",
-    href: `${basePath}/dynamic-route?id=123`,
-  },
-  {
-    text: "mitt",
-    href: `${basePath}/mitt`,
-  },
-];
-
-const Playground: React.FC = ({ children }) => {
-  const route = useRouter();
-  useEffect(() => {
-    if (route.pathname === basePath) {
-      route.replace(defaultPath);
-    }
-  }, [route]);
-
-  useNav(links);
-
-  return (
-    <Main>
-      <div className="flex w-full">
-        <Sidebar />
-        <section className="mx-4 sm:mx-8 mt-9 mb-16 flex-grow">
-          {children}
-        </section>
-      </div>
-    </Main>
-  );
+export const getStaticProps: GetStaticProps = () => {
+  return {
+    props: {},
+    redirect: {
+      destination: "/playground/state-management",
+      permanent: false,
+    },
+  };
 };
-
-export default Playground;

@@ -9,11 +9,10 @@ import {
 } from "rxjs/operators";
 import Article from "src/components/Article";
 import TextField from "src/components/TextField";
+import { getLayout } from "src/layouts/Playground";
 import { useSubject, useSubscription } from "src/modules/observable";
 import { usePosts } from "src/modules/store/posts";
 import * as Yup from "yup";
-
-import Playground from "./index";
 
 const SearchLimitHandler: React.FC<{
   onLimitChange: (limit: number) => void;
@@ -55,40 +54,40 @@ const ReactQuery = () => {
   const { data: posts, status, error } = usePosts(limit);
 
   return (
-    <Playground>
-      <Article>
-        <h1>React Query</h1>
-        <p>
-          Fetch posts from{" "}
-          <a href="https://jsonplaceholder.typicode.com/">JSON Placeholder</a>.
-        </p>
-        <hr />
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={() => {}}
-        >
-          <>
-            <TextField name="limit" label="Limit" />
-            <SearchLimitHandler onLimitChange={(limit) => setLimit(limit)} />
-          </>
-        </Formik>
-        {status === "loading" && <div>Loading...</div>}
-        {status === "error" && <div>{error}</div>}
-        {status === "success" && (
-          <div className="divide-y divide-gray200">
-            <div className="mb-8"></div>
-            {posts.map((post) => (
-              <section key={post.id}>
-                <h2 style={{ marginTop: "2rem" }}>{post.title}</h2>
-                <p>{post.body}</p>
-              </section>
-            ))}
-          </div>
-        )}
-      </Article>
-    </Playground>
+    <Article>
+      <h1>React Query</h1>
+      <p>
+        Fetch posts from{" "}
+        <a href="https://jsonplaceholder.typicode.com/">JSON Placeholder</a>.
+      </p>
+      <hr />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={() => {}}
+      >
+        <>
+          <TextField name="limit" label="Limit" />
+          <SearchLimitHandler onLimitChange={(limit) => setLimit(limit)} />
+        </>
+      </Formik>
+      {status === "loading" && <div>Loading...</div>}
+      {status === "error" && <div>{error}</div>}
+      {status === "success" && (
+        <div className="divide-y divide-gray200">
+          <div className="mb-8"></div>
+          {posts.map((post) => (
+            <section key={post.id}>
+              <h2 style={{ marginTop: "2rem" }}>{post.title}</h2>
+              <p>{post.body}</p>
+            </section>
+          ))}
+        </div>
+      )}
+    </Article>
   );
 };
+
+Object.assign(ReactQuery, { getLayout });
 
 export default ReactQuery;

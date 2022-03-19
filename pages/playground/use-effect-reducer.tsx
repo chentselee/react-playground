@@ -1,6 +1,7 @@
 import Article from "src/components/Article";
 import Button from "src/components/Button";
 import { jsonplaceholder } from "src/constants/api";
+import { getLayout } from "src/layouts/Playground";
 import { Post } from "src/models/Post";
 import { useCount } from "src/modules/store/count";
 import {
@@ -9,8 +10,6 @@ import {
   InitialEffectStateGetter,
   useEffectReducer,
 } from "use-effect-reducer";
-
-import Playground from "./index";
 
 type Status = "idle" | "fetching" | "success" | "error";
 
@@ -104,70 +103,67 @@ const UseEffectReducer = () => {
     effectsMap
   );
   return (
-    <Playground>
-      <Article>
-        <h1>useEffectReducer</h1>
-        <hr />
-        <section>
-          <h2 className="capitalize">count: {count}</h2>
-          <section className="flex space-x-8">
-            <Button
-              className="uppercase"
-              onClick={() => countDispatch("INCREMENT")}
-            >
-              increment
-            </Button>
-            <Button
-              className="uppercase"
-              onClick={() => countDispatch("DECREMENT")}
-            >
-              decrement
-            </Button>
-            <Button
-              className="uppercase"
-              onClick={() => countDispatch("RESET")}
-            >
-              reset
-            </Button>
-          </section>
+    <Article>
+      <h1>useEffectReducer</h1>
+      <hr />
+      <section>
+        <h2 className="capitalize">count: {count}</h2>
+        <section className="flex space-x-8">
+          <Button
+            className="uppercase"
+            onClick={() => countDispatch("INCREMENT")}
+          >
+            increment
+          </Button>
+          <Button
+            className="uppercase"
+            onClick={() => countDispatch("DECREMENT")}
+          >
+            decrement
+          </Button>
+          <Button className="uppercase" onClick={() => countDispatch("RESET")}>
+            reset
+          </Button>
         </section>
-        <p>Open console to see the log effect after buttons were clicked.</p>
-        <hr />
+      </section>
+      <p>Open console to see the log effect after buttons were clicked.</p>
+      <hr />
+      <section>
+        <h2>Data Fetching</h2>
         <section>
-          <h2>Data Fetching</h2>
-          <section>
-            <div className="flex items-baseline space-x-8">
-              <h3>Status: {status}</h3>
-              {status !== "fetching" && (
-                <Button onClick={() => postsDispatch({ type: "FETCH" })}>
-                  refetch
-                </Button>
-              )}
-            </div>
-            {status === "fetching" && <p>Loading...</p>}
-            {status === "success" && (
-              <ul>
-                {posts.map((post) => (
-                  <li key={post.id}>
-                    <section>
-                      <h3>{post.title}</h3>
-                      <p>{post.body}</p>
-                    </section>
-                  </li>
-                ))}
-              </ul>
+          <div className="flex items-baseline space-x-8">
+            <h3>Status: {status}</h3>
+            {status !== "fetching" && (
+              <Button onClick={() => postsDispatch({ type: "FETCH" })}>
+                refetch
+              </Button>
             )}
-            {status === "error" && (
-              <section>
-                <h3>Oops! Something went wrong!</h3>
-                <p>{error}</p>
-              </section>
-            )}
-          </section>
+          </div>
+          {status === "fetching" && <p>Loading...</p>}
+          {status === "success" && (
+            <ul>
+              {posts.map((post) => (
+                <li key={post.id}>
+                  <section>
+                    <h3>{post.title}</h3>
+                    <p>{post.body}</p>
+                  </section>
+                </li>
+              ))}
+            </ul>
+          )}
+          {status === "error" && (
+            <section>
+              <h3>Oops! Something went wrong!</h3>
+              <p>{error}</p>
+            </section>
+          )}
         </section>
-      </Article>
-    </Playground>
+      </section>
+    </Article>
   );
 };
+
+Object.assign(UseEffectReducer, { getLayout });
 
 export default UseEffectReducer;

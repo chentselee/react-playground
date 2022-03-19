@@ -27,16 +27,14 @@ const Sidebar = () => {
 };
 
 const SidebarLink: React.FC<NavProps> = ({ text, href, ...props }) => {
-  const { pathname } = useRouter();
+  const router = useRouter();
   return (
     <Link href={href} passHref {...props}>
       <a
         className={clsx([
           classes.link,
           {
-            [classes.activeLink]: pathname
-              .replace(/\s-/g, "")
-              .match(href.toString().replace(/\s-/g, "")),
+            [classes.activeLink]: router.asPath === href,
           },
         ])}
       >
