@@ -14,7 +14,7 @@ const Sidebar = () => {
     state: { links },
   } = useNav();
   return (
-    <aside className="border-r border-gray-100 overflow-y-sroll w-60 hidden sm:block">
+    <aside className="border-r border-gray-100 overflow-y-sroll basis-60 hidden sm:block">
       <ul className="space-y-1 py-6 flex flex-col">
         {links.map((link, index) => (
           <li key={index} className="px-10 py-2">

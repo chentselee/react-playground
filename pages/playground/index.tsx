@@ -50,7 +50,7 @@ const Playground: React.FC = ({ children }) => {
     <Main>
       <div className="flex w-full">
         <Sidebar />
-        <section className="mx-6 sm:mx-12 mt-9 mb-16 flex-grow">
+        <section className="mx-4 sm:mx-8 mt-9 mb-16 flex-grow">
           {children}
         </section>
       </div>
