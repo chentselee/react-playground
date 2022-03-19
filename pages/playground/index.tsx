@@ -48,9 +48,9 @@ const Playground: React.FC = ({ children }) => {
 
   return (
     <Main>
-      <div className="flex w-screen">
+      <div className="flex w-full">
         <Sidebar />
-        <section className="mx-8 sm:mx-16 mt-9 mb-16 flex-grow">
+        <section className="mx-6 sm:mx-12 mt-9 mb-16 flex-grow">
           {children}
         </section>
       </div>
