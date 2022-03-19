@@ -76,9 +76,8 @@ const createSwitchMachine = (brightGuard = 3) =>
 
 const brightGuardAtom = atom(2);
 
-const switchMachineAtom = atomWithMachine(
-  (get) => createSwitchMachine(get(brightGuardAtom)),
-  { devTools: true }
+const switchMachineAtom = atomWithMachine((get) =>
+  createSwitchMachine(get(brightGuardAtom))
 );
 
 if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
