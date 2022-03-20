@@ -6,7 +6,7 @@ function Index() {
   const router = useRouter();
   useEffect(() => {
     router.replace(links[0].href);
-  }, []);
+  }, [router]);
   return null;
 }
 
